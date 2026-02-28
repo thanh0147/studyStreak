@@ -1,0 +1,5 @@
+@import "tailwindcss"; /* <-- Chỉ duy nhất dòng này, xóa sạch các dòng cũ */
+
+body {
+  background-color: #f3f4f6; /* Giữ màu nền xám nhạt */
+}
