@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from supabase import create_client, Client
 from fastapi.middleware.cors import CORSMiddleware
+
 import os
 from datetime import date
 from groq import Groq
@@ -19,16 +20,21 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 app = FastAPI()
 
-# ==========================================
-# 2. CẤU HÌNH CORS (Cho phép React gọi API)
-# ==========================================
+# Bắt đầu đoạn cấu hình CORS
+origins = [
+    "http://localhost:5173", # Để bạn vẫn test được trên máy tính
+    "http://localhost:3000",
+    "https://studystreak.onrender.com", # <--- Tên miền Frontend thật của bạn trên Render
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Chấp nhận request từ React
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"], # Cho phép tất cả các phương thức (GET, POST, PUT, DELETE...)
+    allow_headers=["*"], # Cho phép tất cả các headers
 )
+# Kết thúc đoạn cấu hình CORS
 class CheckinCreate(BaseModel):
     user_id: str
     subject: str
