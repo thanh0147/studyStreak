@@ -38,7 +38,7 @@ function App() {
   // Hàm gọi API lấy mục tiêu
   const fetchAdvice = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:8000/advice/${userId}`);
+      const response = await axios.get(`https://studystreak-be.onrender.com/advice/${userId}`);
       setAdvice(response.data.advice);
     } catch (error) {
       console.error("Lỗi khi tải lời khuyên:", error);
@@ -47,7 +47,7 @@ function App() {
   };
   const fetchStreak = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:8000/streak/${userId}`);
+      const response = await axios.get(`https://studystreak-be.onrender.com/streak/${userId}`);
       setStreak(response.data.streak);
     } catch (error) {
       console.error("Lỗi khi tải streak:", error);
@@ -55,7 +55,7 @@ function App() {
   };
   const fetchCalendar = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:8000/calendar/${userId}`);
+      const response = await axios.get(`https://studystreak-be.onrender.com/calendar/${userId}`);
       setCalendar(response.data.data);
     } catch (error) {
       console.error("Lỗi khi tải lịch sử:", error);
@@ -63,7 +63,7 @@ function App() {
   };
   const fetchGoals = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:8000/goals/${userId}`);
+      const response = await axios.get(`https://studystreak-be.onrender.com/goals/${userId}`);
       setPastGoals(response.data.data);
     } catch (error) {
       console.error("Lỗi khi tải mục tiêu:", error);
@@ -89,7 +89,7 @@ const handleAuthSubmit = async (e) => {
     try {
       if (isLoginMode) {
         // 1. GỌI API ĐĂNG NHẬP
-        const response = await axios.post('http://localhost:8000/login', {
+        const response = await axios.post('https://studystreak-be.onrender.com/login', {
           email: authForm.email,
           password: authForm.password
         });
@@ -105,7 +105,7 @@ const handleAuthSubmit = async (e) => {
 
       } else {
         // 2. GỌI API ĐĂNG KÝ
-        const response = await axios.post('http://localhost:8000/register', {
+        const response = await axios.post('https://studystreak-be.onrender.com/register', {
           name: authForm.name,
           email: authForm.email,
           password: authForm.password
@@ -147,7 +147,7 @@ const handleAuthSubmit = async (e) => {
 
     // 2. Gọi API chạy ngầm để lưu xuống Database
     try {
-      await axios.put(`http://localhost:8000/goals/${id}/toggle`);
+      await axios.put(`https://studystreak-be.onrender.com/goals/${id}/toggle`);
     } catch (error) {
       console.error("Lỗi lưu trạng thái:", error);
       alert("❌ Có lỗi xảy ra khi lưu trạng thái mục tiêu!");
@@ -159,7 +159,7 @@ const handleAuthSubmit = async (e) => {
   const handleCheckinSubmit = async () => {
     try {
       // Gọi API FastAPI và gửi kèm dữ liệu từ form
-      await axios.post('http://localhost:8000/checkins', {
+      await axios.post('https://studystreak-be.onrender.com/checkins', {
         user_id: currentUser.id, // Quan trọng: Lấy ID của người đang đăng nhập!
         subject: subject,
         mood: mood,
