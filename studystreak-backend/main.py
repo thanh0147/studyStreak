@@ -8,7 +8,7 @@ from datetime import date
 from groq import Groq
 from datetime import date, datetime, timedelta, timezone
 # Khởi tạo client Groq (Thay bằng Key thật của bạn nhé)
-GROQ_API_KEY = "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" 
+GROQ_API_KEY = "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" 
 groq_client = Groq(api_key=GROQ_API_KEY)
 # ==========================================
 # 1. CẤU HÌNH SUPABASE
